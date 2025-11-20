@@ -27,11 +27,11 @@
     {
       "entityId": "iframe-demo",
       "name": "Microsoft Docs",
-      "contentUrl": "https://yourdomain.com/iframe-host.html",
+      "contentUrl": "https://<your-static-web-app>.azurestaticapps.net/iframe-host.html",
       "scopes": ["personal"]
     }
   ],
   "validDomains": [
-    "yourdomain.com",
-    "learn.microsoft.com"
+    "<your-static-web-app>.azurestaticapps.net",
+       "learn.microsoft.com"
   ]
