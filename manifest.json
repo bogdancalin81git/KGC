@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "id": "sample-iframe-app",
+  "packageName": "com.example.iframe",
+  "version": "1.0.0",
+  "name": {
+    "short": "Iframe Demo",
+    "full": "Iframe Demo App"
+  },
+  "developer": {
+    "name": "Example Dev",
+    "websiteUrl": "https://learn.microsoft.com",
+    "privacyUrl": "https://learn.microsoft.com/privacy",
+    "termsOfUseUrl": "https://learn.microsoft.com/terms"
+  },
+  "description": {
+    "short": "Embed any webpage in a Teams personal tab.",
+    "full": "This app demonstrates embedding an external webpage in a Teams personal tab using a host page."
+  },
+  "accentColor": "#6264A7",
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "staticTabs": [
+    {
+      "entityId": "iframe-demo",
+      "name": "Microsoft Docs",
+      "contentUrl": "https://yourdomain.com/iframe-host.html",
+      "scopes": ["personal"]
+    }
+  ],
+  "validDomains": [
+    "yourdomain.com",
+    "learn.microsoft.com"
+  ]
