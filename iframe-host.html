@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Iframe Host</title>
+  <title>Teams Tab Iframe Host</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-    }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 100%;
-    }
+    html, body { margin:0; padding:0; height:100%; width:100%; background:#fff; }
+    iframe { border:0; width:100%; height:100%; display:block; }
   </style>
 </head>
 <body>
-  <iframe src="https://learn.microsoft.com"></iframe>
+  <!-- Later replace src with Chrysalis URL (e.g., https://qa.chrysalis.ms/engagementbootstrap?... ) -->
+  <iframe src="https://learn.microsoft.com" allow="clipboard-read; clipboard-write; geolocation; microphone; camera"></iframe>
 </body>
 </html>
