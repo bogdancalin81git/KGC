@@ -7,9 +7,9 @@
   "name": { "short": "KGC Iframe", "full": "KGC Iframe Personal App" },
   "developer": {
     "name": "Bogdan Calin",
-    "websiteUrl": "https://<YOUR_AZURE_STATIC_APP_HOST>",
-    "privacyUrl": "https://<YOUR_AZURE_STATIC_APP_HOST>/privacy.html",
-    "termsOfUseUrl": "https://<YOUR_AZURE_STATIC_APP_HOST>/terms.html"
+    "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net",
+    "privacyUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/privacy.html",
+    "termsOfUseUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/terms.html"
   },
   "description": {
     "short": "Personal tab that hosts an iframe page.",
@@ -21,11 +21,11 @@
     {
       "entityId": "kgc-iframe-tab",
       "name": "KGC Iframe",
-      "contentUrl": "https://<YOUR_AZURE_STATIC_APP_HOST>/iframe-host.html",
+      "contentUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
       "scopes": ["personal"]
     }
   ],
   "validDomains": [
-    "<YOUR_AZURE_STATIC_APP_HOST>",
+    "blue-tree-0a85a6410.3.azurestaticapps.net",
     "learn.microsoft.com"
   ]
