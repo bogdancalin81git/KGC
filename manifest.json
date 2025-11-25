@@ -1,3 +1,4 @@
+
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
   "manifestVersion": "1.16",
@@ -29,6 +30,10 @@
   "validDomains": [
     "blue-tree-0a85a6410.3.azurestaticapps.net",
     "www.example.com",
-	"example.com"
-  ]
-}
+    "example.com",
+    "qa.chrysalis.ms"
+  ],
+  "webApplicationInfo": {
+    "id": "bd2405db-bc11-478f-9087-8f0e13f32351",
+    "resource": "api://bd2405db-bc11-478f-9087-8f0e13f32351"
+  }
