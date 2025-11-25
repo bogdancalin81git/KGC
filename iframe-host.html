@@ -1,66 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chrysalis Integration</title>
+  <title>Teams Login Hint Test</title>
   <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    #loginHintDisplay {
-      font-weight: bold;
-      color: #0078d4;
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      margin-top: 20px;
-    }
+    body { font-family: Arial, sans-serif; padding: 40px; }
+    #loginHintDisplay { font-weight: bold; color: #0078d4; font-size: 1.5em; }
   </style>
 </head>
 <body>
-  <h2>KG ↔ Chrysalis Integration</h2>
+  <h2>Teams Login Hint Test</h2>
   <p>Login Hint: <span id="loginHintDisplay">Loading...</span></p>
-  <iframe id="chrysalisFrame"></iframe>
-
   <script>
-    // === Set your base iframe URL here ===
-    //const chrysalisBaseUrl = "https://qa.chrysalis.ms/engagementbootstrap";
-	
-	const chrysalisBaseUrl = "https://example.com";
-
-    // Initialize Teams SDK
     microsoftTeams.app.initialize().then(() => {
-      // Get Teams auth token
       microsoftTeams.authentication.getAuthToken().then((token) => {
-        // Decode JWT to extract UPN
         const payload = JSON.parse(atob(token.split('.')[1]));
-        const userPrincipalName = payload.upn; // e.g., user@domain.com
-
-        // Build login_hint
+        const userPrincipalName = payload.upn;
         const loginHint = encodeURIComponent(userPrincipalName);
-
-        // Display login_hint for debugging
         document.getElementById('loginHintDisplay').innerText = loginHint;
-
-        // === Set iframe src using the variable ===
-        const iframe = document.getElementById('chrysalisFrame');
-        iframe.src = `${chrysalisBaseUrl}?loginhint=${loginHint}`;
       }).catch(err => {
+        document.getElementById('loginHintDisplay').innerText = 'Auth error: ' + err.message;
         console.error('Auth token error:', err);
-        document.getElementById('loginHintDisplay').innerText = 'Error retrieving login hint';
       });
     }).catch(err => {
+      document.getElementById('loginHintDisplay').innerText = 'SDK init error: ' + err.message;
       console.error('Teams SDK init error:', err);
-      document.getElementById('loginHintDisplay').innerText = 'SDK initialization failed';
     });
   </script>
 </body>
 </html>
-``
