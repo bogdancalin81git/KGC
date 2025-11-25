@@ -22,6 +22,7 @@
       "entityId": "kgc-iframe-tab",
       "name": "KGC Iframe",
       "contentUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
+      "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
       "scopes": ["personal"]
     }
   ],
