@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication Callback</title>
+    <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"></script>
+</head>
+<body>
+    <h2>Completing authentication...</h2>
+    <script>
+    // Parse the URL fragment for tokens
+    function getHashParams() {
+      const hash = window.location.hash.substr(1);
+      return hash.split('&').reduce((res, item) => {
+        const parts = item.split('=');
+        res[parts[0]] = decodeURIComponent(parts[1]);
+        return res;
+      }, {});
+    }
+
+    // Notify Teams of success or failure
+    microsoftTeams.authentication.notifySuccess(getHashParams());
+    // If you want to handle errors, use notifyFailure(errorMessage);
+    </script>
+</body>
+</html>

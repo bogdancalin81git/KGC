@@ -1,18 +1,18 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
   "manifestVersion": "1.16",
-  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77",
-  "packageName": "com.bogdan.kgc.iframe.demo",
+  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77", // Unique Teams app ID (not the Entra App ID)
   "version": "1.0.0",
-  "name": {
-    "short": "KGC Iframe",
-    "full": "KGC Iframe Personal App"
-  },
+  "packageName": "com.bogdan.kgc.iframe.demo",
   "developer": {
     "name": "Bogdan Calin",
     "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net",
     "privacyUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/privacy.html",
     "termsOfUseUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/terms.html"
+  },
+  "name": {
+    "short": "KGC Iframe",
+    "full": "KGC Iframe Personal App"
   },
   "description": {
     "short": "Personal tab that hosts an iframe page.",
@@ -40,5 +40,6 @@
   ],
   "webApplicationInfo": {
     "id": "bd2405db-bc11-478f-9087-8f0e13f32351",
-    "resource": "api://bd2405db-bc11-478f-9087-8f0e13f32351"
+    "resource": "api://blue-tree-0a85a6410.3.azurestaticapps.net/bd2405db-bc11-478f-9087-8f0e13f32351"
   }
+}
