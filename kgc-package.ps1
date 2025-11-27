@@ -9,11 +9,18 @@ $zipPath = "$dest\KGC-Iframe-App.zip"
 Copy-Item "$source\manifest.json" -Destination $dest -Force
 Copy-Item "$source\iframe-host.html" -Destination $dest -Force
 
+
+# Copy icons folder (recursively)
+Copy-Item "$source\icons" -Destination $dest -Recurse -Forc
+
+
 # Delete old zip files
 Get-ChildItem -Path $dest -Filter *.zip -ErrorAction SilentlyContinue | Remove-Item -Force
 
-# Create new zip file (contents in root)
-Compress-Archive -Path (Get-ChildItem -Path $dest -File | Select-Object -ExpandProperty FullName) -DestinationPath $zipPath -Force
+
+# Create new zip file (contents in root, including icons folder)
+Compress-Archive -Path (Get-ChildItem -Path $dest -File | Select-Object -ExpandProperty FullName), "$dest\icons" -DestinationPath $zipPath -Force
+
 
 # Run git commands
 Set-Location $source
