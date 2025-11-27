@@ -1,37 +1,46 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.17",
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77", // Unique Teams app ID (not the Entra App ID)
   "version": "1.0.0",
-  "id": "YOUR-APP-GUID",
-  "name": {
-    "short": "KGC Iframe",
-    "full": "KGC Iframe App"
-  },
+  "packageName": "com.bogdan.kgc.iframe.demo",
   "developer": {
     "name": "Bogdan Calin",
     "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/",
     "privacyUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/privacy.html",
     "termsOfUseUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/terms.html"
   },
+  "name": {
+    "short": "KGC Iframe",
+    "full": "KGC Iframe Personal App"
+  },
+  "description": {
+    "short": "Personal tab that hosts an iframe page.",
+    "full": "This personal app embeds a host page that later points to Chrysalis KG."
+  },
+  "accentColor": "#6264A7",
   "icons": {
     "color": "icons/color.png",
     "outline": "icons/outline.png"
   },
-  "validDomains": [
-    "blue-tree-0a85a6410.3.azurestaticapps.net",
-    "res.cdn.office.net"
-  ],
   "staticTabs": [
     {
-      "entityId": "kgc-iframe-host",
-      "scopes": [ "personal" ],
+      "entityId": "kgc-iframe-tab",
+      "name": "KGC Iframe",
       "contentUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
       "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
-      "name": "KGC Host"
+      "scopes": [ "personal" ]
     }
+  ],
+  "validDomains": [
+    "blue-tree-0a85a6410.3.azurestaticapps.net",
+    "www.example.com",
+    "example.com",
+    "qa.chrysalis.ms",
+    "res.cdn.office.net"
   ],
   "webApplicationInfo": {
     "id": "bd2405db-bc11-478f-9087-8f0e13f32351",
-    "resource": "api://blue-tree-0a85a6410.3.azurestaticapps.net"
+    "resource": "api://blue-tree-0a85a6410.3.azurestaticapps.net/bd2405db-bc11-478f-9087-8f0e13f32351"
   }
 }
