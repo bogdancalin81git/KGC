@@ -38,19 +38,22 @@
             document.getElementById('chrysalis-iframe').src = iframeUrl;
         }
 
-        if (window.microsoftTeams) {
-            microsoftTeams.app.initialize().then(() => {
-                microsoftTeams.getContext().then(context => {
-                    setLoginHint(context.userPrincipalName);
+        if (window.microsoftTeams)
+            {
+                microsoftTeams.app.initialize().then(() => {
+                    microsoftTeams.getContext().then(context => {
+                        setLoginHint(context.userPrincipalName);
+                    }).catch(() => {
+                        setLoginHint("Error during context");
+                    });
                 }).catch(() => {
-                    setLoginHint(null);
+                    setLoginHint("Error during initialize");
                 });
-            }).catch(() => {
-                setLoginHint(null);
-            });
-        } else {
-            setLoginHint(null);
-        }
+            }
+        else
+            {
+                setLoginHint("Window not MS Teams");
+            }
     </script>
 </body>
 </html>
