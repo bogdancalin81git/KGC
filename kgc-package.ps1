@@ -18,7 +18,12 @@ Copy-Item "$source\icons" -Destination $dest -Recurse -Force
 Get-ChildItem -Path $dest -Filter *.zip -ErrorAction SilentlyContinue | Remove-Item -Force
 
 # Create new zip file (contents in root)
-Compress-Archive -Path (Get-ChildItem -Path $dest -File | Select-Object -ExpandProperty FullName) -DestinationPath $zipPath -Force
+#Compress-Archive -Path (Get-ChildItem -Path $dest -File | Select-Object -ExpandProperty FullName) -DestinationPath $zipPath -Force
+
+
+# Create new zip file (contents in root, including icons folder)
+Compress-Archive -Path "$dest\*" -DestinationPath $zipPath -Force
+
 
 # Run git commands
 Set-Location $source
