@@ -10,6 +10,9 @@ Copy-Item "$source\manifest.json" -Destination $dest -Force
 Copy-Item "$source\iframe-host.html" -Destination $dest -Force
 
 
+# Copy icons folder (recursively)
+Copy-Item "$source\icons" -Destination $dest -Recurse -Force
+
 
 # Delete old zip files
 Get-ChildItem -Path $dest -Filter *.zip -ErrorAction SilentlyContinue | Remove-Item -Force
