@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Teams Login Hint Test</title>
-    <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"></script>
+    <script>https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js</script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,13 +28,13 @@
 <body>
     <h2>Teams Login Hint Test</h2>
     <div id="login-hint">Login Hint: Loading...</div>
-    <iframe id="chrysalis-iframe" src="iframe.html?login_hint="></iframe>
+    <iframe id="chrysalis-iframe" src="" title="Chrysalis"></iframe>
     <script>
         function setLoginHint(hint) {
-            const loginHintText = hint || "Not available";
+            const loginHintText = hint ? hint : "Not available";
             document.getElementById('login-hint').textContent = "Login Hint: " + loginHintText;
-            // Pass login hint to iframe.html as query parameter
-            var iframeUrl = "iframe.html?login_hint=" + encodeURIComponent(loginHintText);
+            // Pass login hint to iframe as query parameter
+            var iframeUrl = "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe.html?login_hint=" + encodeURIComponent(loginHintText);
             document.getElementById('chrysalis-iframe').src = iframeUrl;
         }
 
@@ -43,7 +43,7 @@
                 microsoftTeams.getContext().then(context => {
                     setLoginHint(context.userPrincipalName);
                 }).catch(() => {
-                   setLoginHint(null);
+                    setLoginHint(null);
                 });
             }).catch(() => {
                 setLoginHint(null);

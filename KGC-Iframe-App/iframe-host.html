@@ -1,32 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Teams Login Hint Test</title>
-  <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 40px; }
-    #loginHintDisplay { font-weight: bold; color: #0078d4; font-size: 1.5em; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Teams Login Hint Test</title>
+    <script>https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js</script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+
+        #login-hint {
+            font-weight: bold;
+            color: #2b579a;
+            margin-top: 1em;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin-top: 2em;
+        }
+    </style>
 </head>
 <body>
-  <h2>Teams Login Hint Test</h2>
-  <p>Login Hint: <span id="loginHintDisplay">Loading...</span></p>
-  <script>
-    microsoftTeams.app.initialize().then(() => {
-      microsoftTeams.authentication.getAuthToken().then((token) => {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        const userPrincipalName = payload.upn;
-        const loginHint = encodeURIComponent(userPrincipalName);
-        document.getElementById('loginHintDisplay').innerText = loginHint;
-      }).catch(err => {
-        document.getElementById('loginHintDisplay').innerText = 'Auth error: ' + err.message;
-        console.error('Auth token error:', err);
-      });
-    }).catch(err => {
-      document.getElementById('loginHintDisplay').innerText = 'SDK init error: ' + err.message;
-      console.error('Teams SDK init error:', err);
-    });
-  </script>
+    <h2>Teams Login Hint Test</h2>
+    <div id="login-hint">Login Hint: Loading...</div>
+    <iframe id="chrysalis-iframe" src="" title="Chrysalis"></iframe>
+    <script>
+        function setLoginHint(hint) {
+            const loginHintText = hint ? hint : "Not available";
+            document.getElementById('login-hint').textContent = "Login Hint: " + loginHintText;
+            // Pass login hint to iframe as query parameter
+            var iframeUrl = "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe.html?login_hint=" + encodeURIComponent(loginHintText);
+            document.getElementById('chrysalis-iframe').src = iframeUrl;
+        }
+
+        if (window.microsoftTeams) {
+            microsoftTeams.app.initialize().then(() => {
+                microsoftTeams.getContext().then(context => {
+                    setLoginHint(context.userPrincipalName);
+                }).catch(() => {
+                    setLoginHint(null);
+                });
+            }).catch(() => {
+                setLoginHint(null);
+            });
+        } else {
+            setLoginHint(null);
+        }
+    </script>
 </body>
 </html>
