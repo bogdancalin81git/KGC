@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Hint Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+
+        #hint {
+            font-weight: bold;
+            color: #2b579a;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Hint Placeholder</h2>
+    <div id="hint">Login Hint: Loading...</div>
+    <script>
+        // Parse login_hint from query string
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || "Not provided";
+        }
+        document.getElementById('hint').textContent = "Login Hint: " + getQueryParam('login    document.getElementById('hint').textContent = "Login Hint: " + getQueryParam('login_hint');
+    </script>
+</body>
+</html>
