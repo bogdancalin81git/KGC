@@ -1,8 +1,9 @@
 
 # Set source and destination folders
 $source = "C:\Work\Chrysalis\KGC\KGC"
-$dest = "C:\KGC-Iframe-App"
-$zipPath = "$source\KGC-Iframe-App.zip"
+$dest = "$source\KGC-Iframe-App"
+
+$zipPath = "$dest\KGC-Iframe-App.zip"
 
 # Copy files
 Copy-Item "$source\manifest.json" -Destination $dest -Force

@@ -25,35 +25,38 @@
         }
     </style>
 </head>
-<body>
-    <h2>Teams Login Hint Test</h2>
+<body<body Login Hint Test</h2>
     <div id="login-hint">Login Hint: Loading...</div>
     <iframe id="chrysalis-iframe" src="" title="Chrysalis"></iframe>
     <script>
         function setLoginHint(hint) {
             const loginHintText = hint ? hint : "Not available";
             document.getElementById('login-hint').textContent = "Login Hint: " + loginHintText;
-            // Pass login hint to iframe as query parameter
             var iframeUrl = "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe.html?login_hint=" + encodeURIComponent(loginHintText);
             document.getElementById('chrysalis-iframe').src = iframeUrl;
         }
 
-        if (window.microsoftTeams)
-            {
-                microsoftTeams.app.initialize().then(() => {
-                    microsoftTeams.getContext().then(context => {
-                        setLoginHint(context.userPrincipalName);
-                    }).catch(() => {
-                        setLoginHint("Error during context");
-                    });
-                }).catch(() => {
-                    setLoginHint("Error during initialize");
+        function debug(msg) {
+            document.getElementById('login-hint').textContent = "Login Hint: " + msg;
+            console.log(msg);
+        }
+
+        if (window.microsoftTeams) {
+            microsoftTeams.app.initialize().then(() => {
+                microsoftTeams.getContext().then(context => {
+                    setLoginHint(context.userPrincipalName);
+                }).catch(err => {
+                    debug("Error during context: " + err);
+                    setLoginHint("Error during context");
                 });
-            }
-        else
-            {
-                setLoginHint("Window is not MS Teams");
-            }
+            }).catch(err => {
+                debug("Error during initialize: " + err);
+                setLoginHint("Error during initialize");
+            });
+        } else {
+            debug("Window is not MS Teams");
+            setLoginHint("Window is not an MS Teams window");
+        }
     </script>
 </body>
 </html>
