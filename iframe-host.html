@@ -4,12 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Teams Login Hint Test</title>
-
-    <!-- Teams JS SDK v2.x -->
-    <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"
-            integrity="sha384-wJHcQH9v7vBzDq6eWw4bzcM0fS6pWmHfthw3oVUpY7iKQxj3E7kzFJc0YfQIBZ3W"
-            crossorigin="anonymous"></script>
-
+    <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,107 +23,52 @@
             border: 1px solid #ccc;
             margin-top: 2em;
         }
-
-        .muted {
-            color: #666;
-            font-size: 0.9em;
-        }
     </style>
 </head>
 <body>
     <h2>Teams Login Hint Test</h2>
-
     <div id="login-hint">Loading...</div>
-    <div class="muted" id="host-info"></div>
-
-    <!-- The embedded Chrysalis iframe -->
-    <iframe id="chrysalis-iframe"
-            title="Chrysalis"
-            src="about:blank"></iframe>
-
+    <iframe id="chrysalis-iframe" src="about:blank" title="Chrysalis"></iframe>
     <script>
-        /** Utility: set the visual login hint and refresh the iframe with it */
         function setLoginHint(hint) {
             const loginHintText = hint ? String(hint) : "Not available";
-            const hintEl = document.getElementById("login-hint");
-            hintEl.textContent = "Login Hint: " + loginHintText;
-
-            // Build iframe URL with login_hint
-            const iframeUrl =
-                "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe.html?login_hint=" +
-                encodeURIComponent(loginHintText);
-
-            const iframeEl = document.getElementById("chrysalis-iframe");
-            iframeEl.src = iframeUrl;
+            document.getElementById("login-hint").textContent = "Login Hint: " + loginHintText;
+            const iframeUrl = "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe.html?login_hint=" + encodeURIComponent(loginHintText);
+            document.getElementById("chrysalis-iframe").src = iframeUrl;
         }
-
-        /** Utility: write debug message both to page and console */
         function debug(msg) {
-            const text = String(msg);
-            document.getElementById("login-hint").textContent = "Login Hint: " + text;
-            console.log("[LoginHintTest] " + text);
+            document.getElementById("login-hint").textContent = "Login Hint: " + msg;
+            console.log("[LoginHintTest] " + msg);
         }
-
-        /** Optional: show host info (web/desktop, theme) when available */
-        function setHostInfo(context) {
-            const infoEl = document.getElementById("host-info");
-            if (!context || !context.app || !context.app.host) {
-                infoEl.textContent = "";
-                return;
-            }
-            const host = context.app.host;
-            const theme = context.app.theme;
-            infoEl.textContent = `Host: ${host.name} (${host.clientType}) • Theme: ${theme}`;
-        }
-
-        /** Main: robust Teams SDK init that avoids calling .then on undefined */
         document.addEventListener("DOMContentLoaded", async function () {
             try {
-                // Basic presence checks before using v2 API
-                const hasTeams =
+                if (
                     typeof window !== "undefined" &&
                     window.microsoftTeams &&
                     microsoftTeams.app &&
-                    typeof microsoftTeams.app.initialize === "function";
-
-                if (!hasTeams) {
+                    typeof microsoftTeams.app.initialize === "function"
+                ) {
+                    const initResult = microsoftTeams.app.initialize();
+                    if (initResult && typeof initResult.then === "function") {
+                        await initResult;
+                        if (typeof microsoftTeams.app.getContext === "function") {
+                            const context = await microsoftTeams.app.getContext();
+                            const hint = (context && context.user && (context.user.loginHint || context.user.userPrincipalName)) || null;
+                            setLoginHint(hint);
+                            debug("Initialized and context retrieved");
+                        } else {
+                            debug("Teams SDK getContext API not available");
+                            setLoginHint("Context API missing");
+                        }
+                    } else {
+                        debug("Teams SDK initialize did not return a Promise");
+                        setLoginHint("Initialize returned non-promise");
+                    }
+                } else {
                     debug("Window is not MS Teams or Teams SDK not loaded");
                     setLoginHint("Not in Teams / SDK missing");
-                    return;
-                }
-
-                // Call initialize and confirm it returned a Promise before using .then
-                const initResult = microsoftTeams.app.initialize();
-                const isPromise = initResult && typeof initResult.then === "function";
-
-                if (!isPromise) {
-                    debug("Teams SDK initialize did not return a Promise");
-                    setLoginHint("Initialize returned non-promise");
-                    return;
-                }
-
-                // Await proper initialization
-                await initResult;
-
-                // Get context via v2 API
-                if (typeof microsoftTeams.app.getContext === "function") {
-                    const context = await microsoftTeams.app.getContext();
-                    setHostInfo(context);
-
-                    // Prefer loginHint; fall back to userPrincipalName if needed
-                    const hint =
-                        (context &&
-                            context.user &&
-                            (context.user.loginHint || context.user.userPrincipalName)) || null;
-
-                    setLoginHint(hint);
-                    debug("Initialized and context retrieved");
-                } else {
-                    debug("Teams SDK getContext API not available");
-                    setLoginHint("Context API missing");
                 }
             } catch (err) {
-                // Catch both initialize and getContext errors
                 debug("Error during initialize/getContext: " + (err && err.message ? err.message : err));
                 setLoginHint("Error");
             }
