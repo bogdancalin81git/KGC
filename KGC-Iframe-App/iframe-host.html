@@ -51,7 +51,7 @@
                 });
             }).catch(err => {
                 debug("Error during initialize: " + err);
-                setLoginHint("Error during initialize");
+                setLoginHint("Error during initialize" + err );
             });
         } else {
             debug("Window is not MS Teams");
