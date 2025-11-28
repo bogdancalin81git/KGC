@@ -1,9 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
   "manifestVersion": "1.16",
-  "id": "72350f09-c92a-4b7e-9d19-64db5093dcbe", // Unique Teams app ID (not the Entra App ID)
+  "id": "610da0f3-3334-4784-86ed-98afa769ea68", // Unique Teams app ID (not the Entra App ID)
   "version": "1.0.0",
-  "packageName": "com.bogdan.kgc.iframe.demo",
   "developer": {
     "name": "Bogdan Calin",
     "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/",
@@ -34,6 +33,7 @@
   ],
   "validDomains": [
     "blue-tree-0a85a6410.3.azurestaticapps.net",
+    "jolly-tree-0d870ef03.3.azurestaticapps.net",
     "www.example.com",
     "example.com",
     "qa.chrysalis.ms",
