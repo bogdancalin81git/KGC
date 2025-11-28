@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.16",
+  "manifestVersion": "1.14",
   "id": "610da0f3-3334-4784-86ed-98afa769ea68", // Unique Teams app ID (not the Entra App ID)
   "version": "1.0.0",
   "developer": {
