@@ -1,46 +1,34 @@
 {
-  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.23/MicrosoftTeams.schema.json",
-  "version": "1.0.0",
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
   "manifestVersion": "1.14",
   "id": "e5b2e144-4737-46b4-9234-9320dc90ae95",
-  "name": {
-    "short": "AppleX",
-    "full": "AppleXY Full name"
-  },
+  "version": "1.0.0",
   "developer": {
     "name": "Bogdan Developer",
-    "mpnId": "",
     "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net",
     "privacyUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/privacy.html",
     "termsOfUseUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/terms.html"
+  },
+  "name": {
+    "short": "AppleX",
+    "full": "AppleXY Full name"
   },
   "description": {
     "short": "some short description",
     "full": "some long description"
   },
-  "icons": {
-    "outline": "icons/outline.png",
-    "color": "icons/color.png"
-  },
   "accentColor": "#FFFFFF",
+  "icons": {
+    "color": "icons/color.png",
+    "outline": "icons/outline.png"
+  },
   "staticTabs": [
     {
       "entityId": "be30ff62-a73e-4429-be86-241995d5bd4f",
       "name": "Tab",
       "contentUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
       "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
-      "scopes": [
-        "personal"
-      ],
-      "context": [
-        "personalTab"
-      ]
-    },
-    {
-      "entityId": "about",
-      "scopes": [
-        "personal"
-      ]
+      "scopes": [ "personal" ]
     }
   ],
   "validDomains": [
