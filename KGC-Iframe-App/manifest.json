@@ -1,38 +1,46 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.14",
-  "id": "e5b2e144-4737-46b4-9234-9320dc90ae95",
+  "manifestVersion": "1.16",
+  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77", // Unique Teams app ID (not the Entra App ID)
   "version": "1.0.0",
+  "packageName": "com.bogdan.kgc.iframe.demo",
   "developer": {
-    "name": "Bogdan Developer",
-    "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net",
-    "privacyUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/privacy.html",
-    "termsOfUseUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/terms.html"
+    "name": "Bogdan Calin",
+    "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/",
+    "privacyUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/privacy.html",
+    "termsOfUseUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/terms.html"
   },
   "name": {
-    "short": "AppleX",
-    "full": "AppleXY Full name"
+    "short": "KGC Iframe",
+    "full": "KGC Iframe Personal App"
   },
   "description": {
-    "short": "Personal tab renders a static HTML page.",
-    "full": "Minimal Teams personal app that loads a static HTML page—no SSO, no bots."
+    "short": "Personal tab that hosts an iframe page.",
+    "full": "This personal app embeds a host page that later points to Chrysalis KG."
   },
-  "accentColor": "#FFFFFF",
+  "accentColor": "#6264A7",
   "icons": {
     "color": "icons/color.png",
     "outline": "icons/outline.png"
   },
   "staticTabs": [
     {
-      "entityId": "be30ff62-a73e-4429-be86-241995d5bd4f",
-      "name": "Tab",
-      "contentUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
-      "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
+      "entityId": "kgc-iframe-tab",
+      "name": "KGC Iframe",
+      "contentUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
+      "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
       "scopes": [ "personal" ]
     }
   ],
   "validDomains": [
-    "jolly-tree-0d870ef03.3.azurestaticapps.net",
-    "example.com"
-  ]
+    "blue-tree-0a85a6410.3.azurestaticapps.net",
+    "www.example.com",
+    "example.com",
+    "qa.chrysalis.ms",
+    "res.cdn.office.net"
+  ],
+  "webApplicationInfo": {
+    "id": "bd2405db-bc11-478f-9087-8f0e13f32351",
+    "resource": "api://blue-tree-0a85a6410.3.azurestaticapps.net/bd2405db-bc11-478f-9087-8f0e13f32351"
+  }
 }
