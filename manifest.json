@@ -14,8 +14,8 @@
     "full": "AppleXY Full name"
   },
   "description": {
-    "short": "some short description",
-    "full": "some long description"
+    "short": "Personal tab renders a static HTML page.",
+    "full": "Minimal Teams personal app that loads a static HTML page—no SSO, no bots."
   },
   "accentColor": "#FFFFFF",
   "icons": {
