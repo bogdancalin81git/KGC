@@ -1,21 +1,22 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
-  "manifestVersion": "1.14",
-  "id": "53d5917d-56df-4af8-aef2-84287f0371bf", // Unique Teams app ID (not the Entra App ID)
+  "manifestVersion": "1.16",
+  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77",
+  "packageName": "com.bogdan.kgc.iframe.demo",
   "version": "1.0.0",
-  "developer": {
-    "name": "Bogdan Calin",
-    "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/",
-    "privacyUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/privacy.html",
-    "termsOfUseUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/terms.html"
-  },
   "name": {
     "short": "KGC Iframe",
     "full": "KGC Iframe Personal App"
   },
+  "developer": {
+    "name": "Bogdan Calin",
+    "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net",
+    "privacyUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/privacy.html",
+    "termsOfUseUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/terms.html"
+  },
   "description": {
     "short": "Personal tab that hosts an iframe page.",
-    "full": "This personal app embeds a host page that later points to Chrysalis KG."
+    "full": "This personal app embeds a host page that later points to "
   },
   "accentColor": "#6264A7",
   "icons": {
@@ -27,20 +28,12 @@
       "entityId": "kgc-iframe-tab",
       "name": "KGC Iframe",
       "contentUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
-      "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
       "scopes": [ "personal" ]
     }
   ],
   "validDomains": [
-    "blue-tree-0a85a6410.3.azurestaticapps.net",
     "jolly-tree-0d870ef03.3.azurestaticapps.net",
     "www.example.com",
-    "example.com",
-    "qa.chrysalis.ms",
-    "res.cdn.office.net"
-  ],
-  "webApplicationInfo": {
-    "id": "8e1eea49-fe96-41e5-ae13-f9a42bbb71e6",
-    "resource": "api://jolly-tree-0d870ef03.3.azurestaticapps.net/8e1eea49-fe96-41e5-ae13-f9a42bbb71e6"
-  }
+    "example.com"
+  ]
 }
