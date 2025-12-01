@@ -6,9 +6,9 @@
   "packageName": "com.bogdan.kgc.iframe.demo",
   "developer": {
     "name": "Bogdan Calin",
-    "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/",
-    "privacyUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/privacy.html",
-    "termsOfUseUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/terms.html"
+    "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/",
+    "privacyUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/privacy.html",
+    "termsOfUseUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/terms.html"
   },
   "name": {
     "short": "KGC Iframe",
@@ -27,13 +27,13 @@
     {
       "entityId": "kgc-iframe-tab",
       "name": "KGC Iframe",
-      "contentUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
-      "websiteUrl": "https://blue-tree-0a85a6410.3.azurestaticapps.net/iframe-host.html",
+      "contentUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
+      "websiteUrl": "https://jolly-tree-0d870ef03.3.azurestaticapps.net/iframe-host.html",
       "scopes": [ "personal" ]
     }
   ],
   "validDomains": [
-    "blue-tree-0a85a6410.3.azurestaticapps.net",
+    "jolly-tree-0d870ef03.3.azurestaticapps.net",
     "www.example.com",
     "example.com",
     "qa.chrysalis.ms",
