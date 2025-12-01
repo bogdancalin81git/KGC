@@ -38,9 +38,5 @@
     "example.com",
     "qa.chrysalis.ms",
     "res.cdn.office.net"
-  ],
-  "webApplicationInfo": {
-    "id": "bd2405db-bc11-478f-9087-8f0e13f32351",
-    "resource": "api://blue-tree-0a85a6410.3.azurestaticapps.net/bd2405db-bc11-478f-9087-8f0e13f32351"
-  }
+  ]
 }

@@ -1,140 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Teams Login Hint Diagnostic</title>
-
-    <!-- Teams JS SDK v2 -->
-    <script src="https://res.cdn.office.net/teams-js/2.35.0/js/MicrosoftTeams.min.js"
-            integrity=""
-            crossorigin="anonymous"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IFrame Host</title>
     <style>
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            margin: 2em;
-        }
-
-        h2 {
-            margin: 0 0 .5em;
-        }
-
-        .row {
-            margin: .25em 0;
-        }
-
-        .label {
-            color: #666;
-            min-width: 180px;
-            display: inline-block;
-        }
-
-        #status {
-            font-weight: bold;
-            color: #2b579a;
-            margin-top: .5em;
+            background-color: #f4f4f4;
         }
 
         iframe {
+            border: none;
             width: 100%;
-            height: 360px;
-            border: 1px solid #ccc;
-            margin-top: 1.25em;
-        }
-
-        pre {
-            background: #f7f7f7;
-            padding: .75em;
-            border: 1px solid #e0e0e0;
-            overflow: auto;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <h2>Iframe Host</h2>
-    <h2>Teams Login Hint Diagnostic</h2>
-    <div id="status">Starting…</div>
-
-    <div class="row"><span class="label">Window location:</span><span id="loc"></span></div>
-    <div class="row"><span class="label">Document referrer:</span><span id="ref"></span></div>
-    <div class="row"><span class="label">Has window.microsoftTeams:</span><span id="hasSdk">false</span></div>
-    <div class="row"><span class="label">App initialized:</span><span id="initialized">false</span></div>
-    <div class="row"><span class="label">Client:</span><span id="client"></span></div>
-    <div class="row"><span class="label">Theme:</span><span id="theme"></span></div>
-    <div class="row"><span class="label">Login hint:</span><span id="hint">n/a</span></div>
-
-    <pre id="ctxDump" hidden></pre>
-
-    <iframe id="chrysalis-iframe"
-            title="Chrysalis"
-            src="about:blank"></iframe>
-
-    <script>
-        const APP_BASE_URL = "https://blue-tree-0a85a6410.3.azurestaticapps.net";
-
-        const el = (id) => document.getElementById(id);
-        const set = (id, v) => el(id).textContent = String(v ?? '');
-
-        function setStatus(msg) { set('status', msg); console.log('[Diag]', msg); }
-
-        function updateIframeWithHint(hintText) {
-            const url = APP_BASE_URL + "/iframe.html?login_hint=" + encodeURIComponent(hintText || 'Not available');
-            el('chrysalis-iframe').src = url;
-        }
-
-        function dump(name, obj) {
-            const pre = el('ctxDump');
-            pre.hidden = false;
-            pre.textContent = `${name}:\n` + JSON.stringify(obj, null, 2);
-        }
-
-        // Basic page info
-        set('loc', window.location.href);
-        set('ref', document.referrer);
-
-        // SDK presence
-        const hasSdk = !!(window.microsoftTeams);
-        set('hasSdk', hasSdk);
-
-        (async () => {
-            if (!hasSdk || !microsoftTeams.app || typeof microsoftTeams.app.initialize !== 'function') {
-                setStatus('Not in Teams / SDK missing');
-                updateIframeWithHint('Not available');
-                return;
-            }
-
-            try {
-                await microsoftTeams.app.initialize();
-                set('initialized', true);
-                setStatus('Initialized');
-
-                if (typeof microsoftTeams.app.getContext === 'function') {
-                    const ctx = await microsoftTeams.app.getContext();
-                    dump('getContext()', ctx);
-
-                    const clientType = ctx?.app?.host?.clientType || 'unknown';
-                    const theme = ctx?.app?.theme || 'default';
-                    set('client', clientType);
-                    set('theme', theme);
-
-                    // Prefer user.loginHint (v2), fall back to userPrincipalName
-                    const hint = ctx?.user?.loginHint || ctx?.user?.userPrincipalName || null;
-                    set('hint', hint || 'Not available');
-
-                    updateIframeWithHint(hint);
-                    setStatus('Initialized + context OK');
-                } else {
-                    setStatus('Initialized, but getContext() not available');
-                    updateIframeWithHint('Not available');
-                }
-            } catch (err) {
-                setStatus('Error during initialize/getContext: ' + (err?.message || err));
-                updateIframeWithHint('Not available');
-                dump('Error', {
-                    message: err?.message, dump('Error', { message: err?.message, stack: err?.stack });
-                }
-          }) ();
-    </script>
+    <!-- Embedding W3Schools homepage -->
+    <iframe src="https://example.com/" title="Embedded Page"></iframe>
 </body>
 </html>
