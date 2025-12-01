@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
   "manifestVersion": "1.16",
-  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77", // Unique Teams app ID (not the Entra App ID)
+  "id": "b3f8a2d4-7c91-4e3a-9f2b-8d6c4a1e2f77", 
   "version": "1.0.0",
   "packageName": "com.bogdan.kgc.iframe.demo",
   "developer": {
