@@ -11,7 +11,7 @@ Copy-Item "$source\iframe-host.html" -Destination $dest -Force
 
 
 # Copy icons folder (recursively)
-Copy-Item "$source\icons" -Destination $dest -Recurse -Force
+Copy-Item "$source" -Destination $dest -Recurse -Force
 
 
 # Delete old zip files
