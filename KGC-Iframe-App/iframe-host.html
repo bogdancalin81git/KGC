@@ -1,27 +1,138 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>IFrame Host</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+  <title>IFrame Host</title>
 
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+  <!-- Teams JS SDK v2 -->
+  <script src="https://res.cdn.office.net/teams-js/2.17.0/js/MicrosoftTeams.min.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 10px 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    header .label {
+      color: #333;
+    }
+
+    #email {
+      font-weight: 600;
+      color: #1f4e79;
+    }
+
+    #status {
+      font-size: 12px;
+      color: #666;
+      margin-left: auto;
+    }
+
+    main {
+      height: calc(100% - 50px); /* header ≈ 50px */
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+    }
+  </style>
 </head>
 <body>
-    <p>Main Frame</p>
-    <iframe src="https://qa.chrysalis.ms/engagementbootstrap?loginhint=bogdancalin@microsoft.com" title="Embedded Page"></iframe>
+  <header>
+    <span class="label">Main Frame</span>
+    <span class="label">• Signed-in user:</span>
+    <span id="email">(loading…)</span>
+    <span id="status" aria-live="polite"></span>
+  </header>
+
+  <main>
+    <!-- We will set src dynamically after we read Teams context -->
+    <iframe id="embeddedFrame"
+            title="Embedded Page"
+            src="about:blank"
+            referrerpolicy="no-referrer"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
+    </iframe>
+  </main>
+
+  <script>
+    (async () => {
+      const emailEl  = document.getElementById('email');
+      const statusEl = document.getElementById('status');
+      const iframeEl = document.getElementById('embeddedFrame');
+
+      // ---- Configure your base iframe URL here ----
+      // Example based on your text: qa chrysalis engagementbootstrap
+      // Use a proper absolute URL; keep query empty, we'll add loginhint.
+      const BASE_IFRAME_URL = "https://qa.chrysalis.ms/engagementbootstrap";
+      // --------------------------------------------
+
+      try {
+        // Initialize Teams SDK in the iframe host page
+        await microsoftTeams.app.initialize();
+
+        // Read Teams context
+        const context = await microsoftTeams.app.getContext();
+
+        // Commonly available ID hints
+        // loginHint: often the UPN; userPrincipalName: UPN; id: AAD object id
+        const upn =
+          (context?.user?.loginHint && String(context.user.loginHint).trim()) ||
+          (context?.user?.userPrincipalName && String(context.user.userPrincipalName).trim()) ||
+          "";
+
+        // Display to the user
+        if (upn) {
+          emailEl.textContent = upn;
+          statusEl.textContent = "UPN from Teams context";
+        } else {
+          emailEl.textContent = "(no UPN available)";
+          statusEl.textContent = "Context did not include loginHint/userPrincipalName";
+        }
+
+        // Build iframe URL with loginhint if we have it
+        const url = new URL(BASE_IFRAME_URL);
+        if (upn) {
+          url.searchParams.set("loginhint", upn);
+        }
+
+        // Optionally forward the Teams theme to your page (useful for styling)
+        if (context?.app?.theme) {
+          url.searchParams.set("theme", context.app.theme);
+        }
+
+        iframeEl.src = url.toString();
+
+      } catch (e) {
+        console.error("Teams context/init error:", e);
+        emailEl.textContent = "(error fetching user context)";
+        statusEl.textContent = "Ensure this page runs inside a Teams tab/personal app";
+
+        // Fallback: keep a static URL, optionally with your hardcoded login
+        const fallbackUrl =
+          "https://qa.chrysalis.ms/engagementbootstrap?loginhint=bogdancalin@microsoft.com";
+        iframeEl.src = fallbackUrl;
+      }
+    })();
+   </script>
 </body>
-</html>
