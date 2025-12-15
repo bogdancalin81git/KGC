@@ -19,8 +19,8 @@
     "full": "Knowledge Garden Chrysalis Integration App"
   },
   "icons": {
-    "outline": "outline.png",
-    "color": "color.png"
+    "outline": "icons/outline.png",
+    "color": "icons/color.png"
   },
   "accentColor": "#FFFFFF",
   "staticTabs": [
