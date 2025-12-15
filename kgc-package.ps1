@@ -9,9 +9,8 @@ $zipPath = "$dest\KGC-Iframe-App.zip"
 Copy-Item "$source\manifest.json" -Destination $dest -Force
 Copy-Item "$source\iframe-host.html" -Destination $dest -Force
 
-
-# Copy icons folder (recursively)
-Copy-Item "$source" -Destination $dest -Recurse -Force
+Copy-Item "$source\outline.png" -Destination $dest -Force
+Copy-Item "$source\color.png" -Destination $dest -Force
 
 
 # Delete old zip files
